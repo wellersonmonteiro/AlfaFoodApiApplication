@@ -16,7 +16,7 @@ public class MeuPrimeiroController {
 		this.ativacaoClienteService = ativacaoClienteService;
 	}
 
-	@GetMapping("/hello")
+	@GetMapping("/ola")
 	@ResponseBody
 	public String hello() {
 	    Cliente joao = new Cliente("João", "joao@xyz.com", "3499998888");
