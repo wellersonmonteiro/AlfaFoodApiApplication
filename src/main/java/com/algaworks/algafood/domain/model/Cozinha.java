@@ -1,11 +1,17 @@
 package com.algaworks.algafood.domain.model;
 
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.AccessType;
 
 import java.util.Objects;
 
 @Entity
+@Getter
+@Setter
+@EqualsAndHashCode
 
 
 public class Cozinha {
@@ -15,21 +21,6 @@ public class Cozinha {
 
     private String name;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     @Override
     public boolean equals(Object o) {
