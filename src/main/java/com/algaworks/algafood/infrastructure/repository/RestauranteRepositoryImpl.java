@@ -17,12 +17,14 @@ public class RestauranteRepositoryImpl implements RestauranteRepository {
 	@PersistenceContext
 	private EntityManager manager;
 	
+
+
 	@Override
-	public List<Restaurante> listar() {
+	public List<Restaurante> todos() {
 		return manager.createQuery("from Restaurante", Restaurante.class)
 				.getResultList();
 	}
-	
+
 	@Override
 	public Restaurante buscar(Long id) {
 		return manager.find(Restaurante.class, id);

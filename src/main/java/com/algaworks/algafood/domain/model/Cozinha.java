@@ -1,6 +1,7 @@
 package com.algaworks.algafood.domain.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,12 +10,13 @@ import org.springframework.data.annotation.AccessType;
 import java.util.Objects;
 
 @Entity
-@Getter
-@Setter
-@EqualsAndHashCode
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 
 
 public class Cozinha {
+
+    @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
