@@ -1,13 +1,16 @@
 package com.algaworks.algafood.api.controller;
 
+import com.algaworks.algafood.api.model.CozinhasXmlWrapper;
 import com.algaworks.algafood.domain.model.Cozinha;
 import com.algaworks.algafood.domain.repository.CozinhaRepository;
+import org.cef.callback.CefContextMenuParams;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.w3c.dom.stylesheets.MediaList;
 
 import java.util.List;
 
@@ -19,7 +22,23 @@ public class CozinhaController {
     private CozinhaRepository cozinhaRepository;
 
     @GetMapping
-    public List<Cozinha> listar() {
+    public List<Cozinha> todas() {
        return cozinhaRepository.todas();
+    }
+
+    @GetMapping("/{cozinhaId}")
+    public ResponseEntity<Cozinha> buscar(@PathVariable("cozinhaId") long id){
+        Cozinha cozinha = cozinhaRepository.buscar(id);
+
+        if(cozinha != null){
+        return ResponseEntity.ok(cozinha);
+        }
+        else {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+    @GetMapping(produces = MediaType.APPLICATION_XML_VALUE)
+    public CozinhasXmlWrapper listarXml(){
+        return new CozinhasXmlWrapper(cozinhaRepository.todas());
     }
 }

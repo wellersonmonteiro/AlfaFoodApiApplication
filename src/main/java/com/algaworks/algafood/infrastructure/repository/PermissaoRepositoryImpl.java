@@ -5,9 +5,10 @@ import com.algaworks.algafood.domain.repository.PermissaoRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 public class PermissaoRepositoryImpl implements PermissaoRepository {
     @PersistenceContext
     private EntityManager manager;
