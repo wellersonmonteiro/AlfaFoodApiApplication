@@ -2,18 +2,22 @@ package com.algaworks.algafood.domain.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Data
 public class Restaurante {
+    @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String nome;
-    @Column(name = "taxa_frete")
+    @Column(name = "taxa_frete", nullable = false)
     private BigDecimal taxaFrete;
 
     public Long getId() {
@@ -41,8 +45,9 @@ public class Restaurante {
     }
 
 
-    @ManyToOne
-    private Cozinha cozinha;
+  @ManyToOne
+   @JoinColumn(name = "cozinha_id", nullable = true)
+  private Cozinha cozinha;
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
