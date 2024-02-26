@@ -52,8 +52,8 @@ public class RestauranteController {
         }
     }
 
-    @PutMapping("{restaunteId}")
-    private ResponseEntity<?> atulizar(@PathVariable Long restaunteId,
+    @PutMapping("/{restaunteId}")
+    public ResponseEntity<?> atulizar(@PathVariable Long restaunteId,
                                                  @RequestBody  Restaurante restaurante){
         try {
             Restaurante restauranteAtual = restauranteRepository.buscar(restaunteId);
@@ -63,8 +63,10 @@ public class RestauranteController {
 
           restauranteAtual = restauranteRepository.salvar(restauranteAtual);
            return ResponseEntity.ok(restauranteAtual);
-        }
+        }else{
         return ResponseEntity.notFound().build();
+        }
+
         }catch (EntidadeNaoEncontradaExecption e){
                 return ResponseEntity.badRequest()
                         .body(e.getMessage());
