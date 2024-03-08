@@ -26,6 +26,12 @@
             <artifactId>xstream</artifactId>
             <version>1.4.19</version> <!-- Use a versão mais recente disponível -->
         </dependency>
+        <!--  SWAGGER DOCUMENTACAO  -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.3.0</version>
+        </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-xml</artifactId>

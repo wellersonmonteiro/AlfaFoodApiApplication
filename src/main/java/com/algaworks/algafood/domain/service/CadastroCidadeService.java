@@ -29,11 +29,11 @@ public class CadastroCidadeService {
             throw new EntidadeNaoEncontradaExecption(
                     String.format("Nãi existe cozinha com código %d", cidadeId));
         }
-        return cidadeRepository.salvar(cidade);
+        return cidadeRepository.save(cidade);
     }
     public void excluir(Long cidadeId){
         try {
-            cidadeRepository.remover(cidadeId);
+            cidadeRepository.deleteById(cidadeId);
         }catch (EmptyResultDataAccessException e){
             throw new EntidadeNaoEncontradaExecption(
                     String.format("Não existe um cadastro com código %d", cidadeId));

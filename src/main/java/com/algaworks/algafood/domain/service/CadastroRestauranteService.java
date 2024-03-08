@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import java.util.Optional;
+
 @Service
 public class CadastroRestauranteService {
 
@@ -28,13 +30,13 @@ public class CadastroRestauranteService {
 
     public Restaurante salvar(Restaurante restaurante){
         Long cozinhaId= restaurante.getCozinha().getId();
-        Cozinha cozinha = cozinhaRepository.buscar(cozinhaId);
+        Optional<Cozinha> cozinha = cozinhaRepository.findById(cozinhaId);
 
-        if (cozinha == null){
+        if (cozinha.isPresent()){
             throw new EntidadeNaoEncontradaExecption(
                     String.format("Não existe cozinha com código %d", cozinhaId));
         }
-        restaurante.setCozinha(cozinha);
+        restaurante.setCozinha(cozinha.get());
         return restauranteRepository.salvar(restaurante);
 
     }
