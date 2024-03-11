@@ -13,6 +13,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Repository
 public class CadastroCidadeService {
     @Autowired
@@ -24,8 +26,8 @@ public class CadastroCidadeService {
     public Cidade salvar(Cidade cidade){
         Long cidadeId = cidade.getEstado().getId();
 
-        Estado estado = estadoRepository.buscar(cidadeId);
-        if (estado== null){
+        Optional<Estado> estado = estadoRepository.findById(cidadeId);
+        if (estado.isPresent()){
             throw new EntidadeNaoEncontradaExecption(
                     String.format("Nãi existe cozinha com código %d", cidadeId));
         }

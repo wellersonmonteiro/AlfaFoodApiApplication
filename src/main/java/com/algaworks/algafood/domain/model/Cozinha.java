@@ -10,11 +10,12 @@ import org.springframework.data.annotation.AccessType;
 
 import java.util.Objects;
 
-@JsonRootName("cozinha")
 
 @Entity
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Getter
+@Setter
 
 
 public class Cozinha {
@@ -22,7 +23,7 @@ public class Cozinha {
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(nullable = false)
     private String name;
